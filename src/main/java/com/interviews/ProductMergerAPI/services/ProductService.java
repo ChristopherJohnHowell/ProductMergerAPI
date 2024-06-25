@@ -1,6 +1,5 @@
 package com.interviews.ProductMergerAPI.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.interviews.ProductMergerAPI.client.ProductClient;
 import com.interviews.ProductMergerAPI.client.ProductPriceClient;
 import com.interviews.ProductMergerAPI.client.model.Product;
@@ -20,20 +19,21 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     public UnifiedProduct[] getProducts(String productType) {
-        Set<Product> products = new ProductClient(new ObjectMapper()).getProducts();
+
+        Set<Product> products = new ProductClient().getProducts();
         if (products == null) {
             log.error("Products API returns null!");
-            return new UnifiedProduct[]{};
+            return null;
         }
 
-        Set<ProductPrice> productPrices = new ProductPriceClient(new ObjectMapper()).getProductPrices();
+        Set<ProductPrice> productPrices = new ProductPriceClient().getProductPrices();
         if (productPrices == null) {
             log.error("Prices API returns null!");
-            return new UnifiedProduct[]{};
+            return null;
         }
 
         Map<Integer, ProductPrice> priceMap = productPrices.stream()
-                .collect(Collectors.toMap(ProductPrice::getProductUid, price -> price));
+                .collect(Collectors.toMap(ProductPrice::getProductUid, price -> price)); // Becomes: <productUid, price>
 
         List<UnifiedProduct> resultUnifiedProductList = products.stream()
                 .filter(product -> productType == null || product.getProductType().equals(productType))

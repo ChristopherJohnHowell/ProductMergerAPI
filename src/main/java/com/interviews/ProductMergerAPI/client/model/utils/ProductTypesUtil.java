@@ -1,11 +1,11 @@
-package com.interviews.ProductMergerAPI.services.utils;
+package com.interviews.ProductMergerAPI.client.model.utils;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ProductTypesUtil {
 
-    private static Set<String> productTypes = new HashSet<>();
+    private static final Set<String> productTypes = new HashSet<>();
 
     static {
         productTypes.add("BASIC");
