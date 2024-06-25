@@ -7,7 +7,7 @@ import com.interviews.ProductMergerAPI.client.model.Product;
 import com.interviews.ProductMergerAPI.client.model.ProductPrice;
 import com.interviews.ProductMergerAPI.domains.UnifiedProduct;
 import com.interviews.ProductMergerAPI.services.impl.ProductServiceImpl;
-import com.interviews.ProductMergerAPI.util.TestingUtil;
+import com.interviews.ProductMergerAPI.utils.TestingUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

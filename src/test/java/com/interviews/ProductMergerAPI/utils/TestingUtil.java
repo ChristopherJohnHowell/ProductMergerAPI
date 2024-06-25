@@ -1,4 +1,4 @@
-package com.interviews.ProductMergerAPI.util;
+package com.interviews.ProductMergerAPI.utils;
 
 import com.interviews.ProductMergerAPI.client.model.Product;
 import com.interviews.ProductMergerAPI.client.model.ProductPrice;
