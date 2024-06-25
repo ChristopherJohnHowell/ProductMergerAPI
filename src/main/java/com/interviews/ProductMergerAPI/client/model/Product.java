@@ -7,9 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+// Just remember: B A N D
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Data
 public class Product {
 
