@@ -42,7 +42,7 @@ public class ProductPriceClient {
             ProductPrice[] productArr = restTemplate.getForObject(productsPriceURL, ProductPrice[].class);
             return productArr == null ? null : new HashSet<>(Arrays.asList(productArr));
         } catch (Exception e) {
-            log.error("Could not retrieve products!");
+            log.error("Could not retrieve product prices!");
             return null;
         }
     }
