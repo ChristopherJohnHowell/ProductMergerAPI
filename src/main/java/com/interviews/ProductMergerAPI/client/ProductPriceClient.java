@@ -33,7 +33,7 @@ public class ProductPriceClient {
     /**
      * Get Product Prices from related service.
      * <p>
-     * NOTE: This is the old way (2017) to get use API Client Calls
+     * NOTE: This is the old way (2017) to use API Client Calls
      *
      * @return productPrices
      */
