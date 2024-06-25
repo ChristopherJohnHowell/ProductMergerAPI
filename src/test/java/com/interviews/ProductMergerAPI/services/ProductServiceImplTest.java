@@ -35,14 +35,11 @@ public class ProductServiceImplTest {
     public void getProduct_WithValidData_ShouldReturnProduct() {
         Set<Product> testProducts = new TestingUtil().generateProducts();
         Set<ProductPrice> testProductPrices = new TestingUtil().generateProductPrices();
-
         // NOTE: You have to have an Autowired variable in your classes to test them! (productClient & productPriceClient)
         when(productClient.getProducts()).thenReturn(testProducts);
         when(productPriceClient.getProductPrices()).thenReturn(testProductPrices);
-
         // Execute underTest method...
         UnifiedProduct[] result = underTest.getProducts("BASIC");
-
         UnifiedProduct[] productsArr = new UnifiedProduct[]{
                 UnifiedProduct.builder()
                         .productUid(1999888)
@@ -52,7 +49,6 @@ public class ProductServiceImplTest {
                         .unitPrice(19.99)
                         .unitPriceMeasure("kg")
                         .unitPriceMeasureAmount(1).build()};
-
         assertEquals(productsArr[0].getProductUid(), result[0].getProductUid());
         assertEquals(productsArr[0].getProductType(), result[0].getProductType());
         assertEquals(productsArr[0].getName(), result[0].getName());
