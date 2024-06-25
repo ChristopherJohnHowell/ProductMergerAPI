@@ -1,10 +1,11 @@
-package com.interviews.ProductMergerAPI.services;
+package com.interviews.ProductMergerAPI.services.impl;
 
 import com.interviews.ProductMergerAPI.client.ProductClient;
 import com.interviews.ProductMergerAPI.client.ProductPriceClient;
 import com.interviews.ProductMergerAPI.client.model.Product;
 import com.interviews.ProductMergerAPI.client.model.ProductPrice;
 import com.interviews.ProductMergerAPI.domains.UnifiedProduct;
+import com.interviews.ProductMergerAPI.services.IProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +17,33 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class ProductService {
+public class ProductServiceImpl implements IProductService {
 
+    private final ProductClient productClient;
+    private final ProductPriceClient productPriceClient;
+
+    public ProductServiceImpl(ProductClient productClient, ProductPriceClient productPriceClient) {
+        this.productClient = productClient;
+        this.productPriceClient = productPriceClient;
+    }
+
+    /**
+     * Returns an array of UnifiedProduct objects filtered with the provided productType.
+     *
+     * @param productType
+     * @return UnifiedProductsArr
+     */
+    @Override
     public UnifiedProduct[] getProducts(String productType) {
 
-        Set<Product> products = new ProductClient().getProducts();
-        if (products == null) {
+        Set<Product> products = productClient.getProducts();
+        if (products == null || products.isEmpty()) {
             log.error("Products API returns null!");
             return null;
         }
 
-        Set<ProductPrice> productPrices = new ProductPriceClient().getProductPrices();
-        if (productPrices == null) {
+        Set<ProductPrice> productPrices = productPriceClient.getProductPrices();
+        if (productPrices == null || productPrices.isEmpty()) {
             log.error("Prices API returns null!");
             return null;
         }

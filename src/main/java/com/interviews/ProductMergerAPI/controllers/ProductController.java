@@ -1,7 +1,7 @@
 package com.interviews.ProductMergerAPI.controllers;
 
 import com.interviews.ProductMergerAPI.domains.UnifiedProduct;
-import com.interviews.ProductMergerAPI.services.ProductService;
+import com.interviews.ProductMergerAPI.services.impl.ProductServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductServiceImpl productService) {
         this.productService = productService;
     }
 
