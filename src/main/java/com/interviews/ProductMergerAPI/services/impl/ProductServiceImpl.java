@@ -4,6 +4,7 @@ import com.interviews.ProductMergerAPI.client.ProductClient;
 import com.interviews.ProductMergerAPI.client.ProductPriceClient;
 import com.interviews.ProductMergerAPI.client.model.Product;
 import com.interviews.ProductMergerAPI.client.model.ProductPrice;
+import com.interviews.ProductMergerAPI.client.model.utils.ProductTypesUtil;
 import com.interviews.ProductMergerAPI.domains.UnifiedProduct;
 import com.interviews.ProductMergerAPI.services.IProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +53,7 @@ public class ProductServiceImpl implements IProductService {
                 .collect(Collectors.toMap(ProductPrice::getProductUid, price -> price)); // Becomes: <productUid, price>
 
         List<UnifiedProduct> resultUnifiedProductList = products.stream()
-                .filter(product -> productType == null || product.getProductType().equals(productType))
+                .filter(product -> productType == null || ProductTypesUtil.isValidProductType(productType))
                 .map(product -> {
                     ProductPrice price = priceMap.get(product.getProductUid());
                     if (price != null) {
